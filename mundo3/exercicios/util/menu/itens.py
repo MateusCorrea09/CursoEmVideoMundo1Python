@@ -18,6 +18,18 @@ def acesso_alternativa(num,lista_alternativas):
     except Exception as erro:
         print(f'ERRO! {erro.__class__}')
 
+def leiaint(msg):
+    while True:
+        try:
+            n = int(input(msg))
+        except (ValueError, TypeError):
+            print('Erro por favor digite um número inteiro válido')
+            continue
+        except KeyboardInterrupt:
+            print('O usuário preferiu não digitar esse número')
+            return 0
+        else:
+            return n
 
 def menu(n_botoes):
     '''
@@ -56,3 +68,20 @@ def menu(n_botoes):
                 print(f'ERRO {erro.__class__} {erro.__cause__}')
     
 #Aqui é referente ao projeto 
+def linha(tam = 42):
+    return '- ' * tam
+
+def cabeçalho(txt):
+    print(linha())
+    print(txt.center(42))
+    print(linha())
+
+def menu(lista):
+    cabeçalho('Menu principal')
+    c = 1
+    for item in lista:
+        print(f'\033[33m{c}\033[m - \033[34m{item}\033[m')
+        c += 1
+    print(linha())
+    opc = leiaint('\033[32mSua opção: \033[m')
+    return opc
